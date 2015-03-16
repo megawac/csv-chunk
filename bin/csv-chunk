@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env node
 
 var argv = require('yargs')
 	.usage('Usage: $0 <file.csv> <outputFolder/> --n <100> [--delimiter=,] [--quote="]')
