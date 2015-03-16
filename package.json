@@ -1,0 +1,25 @@
+{
+  "name": "csv-chunk",
+  "version": "1.0.0",
+  "description": "Split a CSV into chunks of n rows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "csv",
+    "chunks"
+  ],
+  "author": "megawac <github.com/megawac>",
+  "license": "wtfpl",
+  "dependencies": {
+    "fast-csv": "^0.6.0",
+    "highland": "^2.4.0",
+    "lodash.pick": "^3.0.0",
+    "mkdirp": "^0.5.0",
+    "yargs": "^3.5.4"
+  },
+  "bin": {
+    "csv-chunk": "bin/csv-chunk"
+  }
+}

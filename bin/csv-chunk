@@ -1,0 +1,33 @@
+#!/bin/env node
+
+var argv = require('yargs')
+	.usage('Usage: $0 <file.csv> <outputFolder/> --n <100> [--delimiter=,] [--quote="]')
+	.demand(2)
+	.demand('n')
+	.describe('n', 'size of chunks')
+	.default('delimiter', ',')
+    .default('quote', '"')
+    .default('headers', true)
+    .argv;
+
+var csv = require('fast-csv');
+var hl = require('highland');
+
+var fs = require('fs');
+var path = require('path');
+var hl = require('highland');
+
+var input = path.resolve(argv._[0]),
+	output = path.resolve(argv._[1]);
+
+require('mkdirp').sync(output);
+
+var options = require('lodash.pick')(argv, 'delimiter', 'quote', 'headers');
+var stream = csv.fromStream(fs.createReadStream(input), options);
+
+// Batch em to go
+var count = 0;
+hl(stream).batch(argv.n).each(function(data) {
+	var outstream = fs.createWriteStream(path.join(output, ++count + '.csv'));
+	csv.writeToStream(outstream, data, options);
+});
