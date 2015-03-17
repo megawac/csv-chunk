@@ -19,5 +19,6 @@
     "mkdirp": "^0.5.0",
     "yargs": "^3.5.4"
   },
+  "preferGlobal": "true",
   "bin": "./bin/csv-chunk"
 }
